@@ -167,49 +167,42 @@ class SendFriendRequest(RatelimitMixin, APIView):
             Response: The HTTP response object with the result of the friend request.
         """
 
-        try:
-            data = request.data
-            sender_details = User.objects.get(username=data.get("sender"))
-            receiver_details = User.objects.get(username=data.get("receiver"))
 
-            # Check if a friend request already exists
-            existing_request = FriendRequest.objects.filter(
-                sender=sender_details.id, receiver=receiver_details.id
-            )
-            if existing_request.exists():
-                return Response({"message": "Friend request already sent."}, status=400)
+        data = request.data
+        sender_details = User.objects.get(username=data.get("sender"))
+        receiver_details = User.objects.get(username=data.get("receiver"))
 
-            request_id = str(uuid4())
-            serializer = FriendRequestSerializer(
-                data={
-                    "sender": sender_details.id,
-                    "receiver": receiver_details.id,
-                    "request_id": request_id,
-                }
-            )
+        # Check if a friend request already exists
+        existing_request = FriendRequest.objects.filter(
+            sender=sender_details.id, receiver=receiver_details.id
+        )
+        if existing_request.exists():
+            return Response({"message": "Friend request already sent."}, status=400)
 
-            if not serializer.is_valid():
-                return Response(
-                    {"status": "error", "data": serializer.errors},
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
+        request_id = str(uuid4())
+        serializer = FriendRequestSerializer(
+            data={
+                "sender": sender_details.id,
+                "receiver": receiver_details.id,
+                "request_id": request_id,
+            }
+        )
 
-            serializer.save()
-
+        if not serializer.is_valid():
             return Response(
-                {
-                    "status": "success",
-                    "message": "Friend request sent",
-                    "friend_req_id": request_id,
-                }
+                {"status": "error", "data": serializer.errors},
+                status=status.HTTP_400_BAD_REQUEST,
             )
-        except:
-            Response(
-                {
-                    "status": "error",
-                    "message": "you can only send 3 requests for minute.",
-                }
-            )
+
+        serializer.save()
+
+        return Response(
+            {
+                "status": "success",
+                "message": "Friend request sent",
+                "friend_req_id": request_id,
+            }
+        )
 
     def patch(self, request, request_id=None):
         """
