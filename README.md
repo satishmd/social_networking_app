@@ -50,7 +50,7 @@ A Simple app built with Django rest framework for social networking
 
 - To check logs
 
-    ```docker logs -f social-networking-app```
+    ```docker logs -f social_networking_app```
 
 
 NOTE : 
@@ -58,3 +58,4 @@ NOTE :
  2. Once you are registered login to get the access token.
  3. Once you get the access token use the access token in header's Authorization.
  4. All the api's and their respective request bodies are present in postman collection.
+ 5. If you are getting any issue like csrf failed, remove the csrf cookie for headers of request.
