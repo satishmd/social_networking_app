@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "c8cf8141-225d-4bf2-bcdf-a9519a377891",
+		"name": "social_networking_app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"Satish9@gmail.com\",\r\n    \"password\" : \"satish@134\",\r\n    \"username\" : \"satish9\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/signup/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 1d1e237af850e865178e147e93d613c854e11412",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"sati\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/fetch-users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"fetch-users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Friend Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token dc5af569b314137a44b83794c2a072a0b01c9a69",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\" : \"satish1\",\r\n    \"receiver\" : \"satish3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/send-friend-request/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"send-friend-request",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accept or Reject Friend Request",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token dc5af569b314137a44b83794c2a072a0b01c9a69",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\" : \"ACCEPTED\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/send-friend-request/7d28ee55-3578-4480-943e-b9f750c260bb/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"send-friend-request",
+						"7d28ee55-3578-4480-943e-b9f750c260bb",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Friends List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token dc5af569b314137a44b83794c2a072a0b01c9a69",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/send-friend-request/?user=satish1&details=friends",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"send-friend-request",
+						""
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "satish1"
+						},
+						{
+							"key": "details",
+							"value": "friends"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Friend Requests Pending",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token dc5af569b314137a44b83794c2a072a0b01c9a69",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/send-friend-request/?user=satish3&details=friend_requests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"send-friend-request",
+						""
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "satish3"
+						},
+						{
+							"key": "details",
+							"value": "friend_requests"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMDU5MTUzLCJpYXQiOjE3MDMwNTg4NTMsImp0aSI6ImZjZjA5ZDIxMTE5MDRhYTdhODFiYzAxZDU3MGRiMGY1IiwidXNlcl9pZCI6MX0.xpzKke_IDm8LEluOMBsuDuipX2KdKX18BifbKzfYsHM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"satish1@gmail.com\",\r\n    \"password\" : \"satish@134\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
